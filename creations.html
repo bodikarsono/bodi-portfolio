@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creations — Bodi Karsono</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --ink: #111111; --red: #E8341A; --yellow: #F5D93A; --blue: #1A3CE8;
+  --mono: 'DM Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --headline: 'Barlow Condensed', 'Trade Gothic LT Std', 'Trade Gothic', 'Franklin Gothic Medium', sans-serif;
+  --serif: 'Barlow', sans-serif; --serif-weight: 700;
+  --body: 'Barlow', sans-serif;
+  --pad: clamp(20px, 5vw, 48px);
+}
+html { scroll-behavior: smooth; }
+html, body { background-color: var(--cream); }
+body { color: var(--ink); font-family: var(--body); overflow-x: hidden; cursor: none; }
+@media (hover: none) { body { cursor: auto; } .cursor, .cursor-ring { display: none; } }
+body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:1000; opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+.cursor { width:12px; height:12px; background:var(--red); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9999; transition:transform .15s ease,background .2s ease; mix-blend-mode:multiply; }
+.cursor-ring { width:36px; height:36px; border:1.5px solid var(--ink); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9998; opacity:.45; }
+.cursor.hover { transform:scale(3); background:var(--yellow); }
+.cursor-ring.hover { opacity:0; }
+nav { position:sticky; top:0; z-index:500; display:flex; justify-content:space-between; align-items:center; padding:16px var(--pad); background:var(--cream); border-bottom:1px solid rgba(0,0,0,.1); }
+.nav-logo { font-family:var(--display); font-size:26px; letter-spacing:.06em; color:var(--ink); text-decoration:none; }
+.hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:4px; user-select:none; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--ink); transition:all .28s ease; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+.mobile-menu { display:none; position:fixed; inset:0; background:var(--cream); z-index:400; flex-direction:column; justify-content:center; align-items:center; gap:28px; }
+.mobile-menu.open { display:flex; }
+.mobile-menu a { font-family:var(--display); font-size:clamp(44px,11vw,72px); letter-spacing:.06em; color:var(--ink); text-decoration:none; opacity:.65; transition:opacity .2s,color .2s; }
+.mobile-menu a:hover, .mobile-menu a:active { opacity:1; color:var(--red); }
+footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-name { font-family:var(--display); font-size:17px; letter-spacing:.1em; opacity:.55; }
+.footer-copy { font-family:var(--mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; opacity:.28; }
+.fade-up { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+.contact { background:var(--red); color:var(--cream); padding:72px var(--pad); display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; }
+.contact-left h2 { font-family:var(--display); font-size:clamp(52px,7vw,100px); letter-spacing:.02em; line-height:.92; }
+.contact-right { display:flex; flex-direction:column; }
+.contact-link { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.2); color:var(--cream); text-decoration:none; transition:padding-left .2s; cursor:none; }
+.contact-link:hover { padding-left:14px; }
+.contact-link-label { font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; opacity:.55; }
+.contact-link-value { font-family:var(--display); font-size:21px; letter-spacing:.04em; }
+.contact-arrow { opacity:.4; font-size:18px; }
+@media(max-width:700px) { .contact { grid-template-columns:1fr; gap:36px; padding:52px var(--pad); } }
+
+.creations-header { padding:60px var(--pad) 40px; border-bottom:1px solid rgba(0,0,0,.1); }
+.creations-title { font-family:var(--headline); font-size:clamp(80px,13vw,160px); line-height:.88; letter-spacing:.04em; font-weight:800; text-transform:uppercase; margin-bottom:16px; }
+.creations-sub { font-family:var(--body); font-style:italic; font-size:clamp(15px,1.4vw,20px); line-height:1.5; opacity:.55; max-width:600px; }
+.creation-row { display:grid; grid-template-columns:1fr 1fr; gap:0; border-bottom:1px solid rgba(0,0,0,.1); }
+.creation-row:last-child { border-bottom:none; }
+.creation-info { padding:52px var(--pad); border-right:1px solid rgba(0,0,0,.1); display:flex; flex-direction:column; justify-content:center; }
+.creation-num { font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.25; margin-bottom:16px; }
+.creation-title { font-family:var(--headline); font-size:clamp(28px,3.5vw,52px); letter-spacing:.04em; font-weight:800; text-transform:uppercase; line-height:.95; margin-bottom:16px; }
+.creation-desc { font-family:var(--body); font-size:15px; line-height:1.55; opacity:.6; }
+.creation-media { padding:32px; display:flex; flex-direction:column; gap:8px; justify-content:center; background:var(--cream); }
+.media-video { position:relative; width:100%; padding-bottom:56.25%; background:var(--ink); overflow:hidden; }
+.media-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+.media-img { width:100%; display:block; overflow:hidden; }
+.media-img img { width:100%; height:auto; display:block; }
+@media(max-width:700px) {
+  .creation-row { grid-template-columns:1fr; }
+  .creation-info { border-right:none; border-bottom:1px solid rgba(0,0,0,.1); padding:40px var(--pad) 32px; }
+  .creation-media { padding:24px var(--pad) 40px; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="creations.html">Creations</a>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">Bodi Karsono</a>
+  <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+</nav>
+<div class="creations-header">
+  <h1 class="creations-title">CREATIONS</h1>
+  <p class="creations-sub">Sometimes the best way to sell something in is to show what it could look like. That's where I step in.</p>
+</div>
+<div class="creation-row">
+  <div class="creation-info fade-up">
+    <div class="creation-num">01</div>
+    <h2 class="creation-title">Google Chrome</h2>
+    <p class="creation-desc">How do we convince iPhone users to move Chrome to their home dock? Wiggle our way into their hearts.</p>
+  </div>
+  <div class="creation-media"><div class="media-video"><iframe src="https://www.youtube.com/embed/KmjGuObT3ZY?feature=share" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div><div class="creation-row">
+  <div class="creation-info fade-up">
+    <div class="creation-num">02</div>
+    <h2 class="creation-title">Google Gemini</h2>
+    <p class="creation-desc">We were challenged to create a film using Google Gemini AI.</p>
+  </div>
+  <div class="creation-media"><div class="media-video"><iframe src="https://www.youtube.com/embed/SQfpqLy1Htk?si=yi1043xtyVH9Nlkb" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div><div class="creation-row">
+  <div class="creation-info fade-up">
+    <div class="creation-num">03</div>
+    <h2 class="creation-title">Ramp Finance</h2>
+    <p class="creation-desc">An IG Story I made to celebrate the launch of our campaign for Ramp Finance.</p>
+  </div>
+  <div class="creation-media"><div class="media-video"><iframe src="https://www.youtube.com/embed/sOWobLbnpJY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div><div class="creation-row">
+  <div class="creation-info fade-up">
+    <div class="creation-num">04</div>
+    <h2 class="creation-title">Disney Super Bowl</h2>
+    <p class="creation-desc">A prototype I made as a thought starter when Disney asked us to announce the Super Bowl on ABC.</p>
+  </div>
+  <div class="creation-media"><div class="media-video"><iframe src="https://www.youtube.com/embed/I4W7-V-dTpk?si=qdOL1ml44dyFPMCu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div><div class="creation-row">
+  <div class="creation-info fade-up">
+    <div class="creation-num">05</div>
+    <h2 class="creation-title">Just an Epic Serena Edit</h2>
+    <p class="creation-desc">A made-for-TikTok edit to celebrate Serena Williams.</p>
+  </div>
+  <div class="creation-media"><div class="media-video"><iframe src="https://www.youtube.com/embed/E0hM6Fg7k_4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div>
+<section class="contact" id="contact">
+  <div class="contact-left"><h2>LET'S MAKE SOMETHING.</h2></div>
+  <div class="contact-right">
+    <a href="mailto:bodikarsono@gmail.com" class="contact-link">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">bodikarsono@gmail.com</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://www.linkedin.com/in/bodi-karsono-05967969/" class="contact-link" target="_blank">
+      <span class="contact-link-label">LinkedIn</span>
+      <span class="contact-link-value">Bodi Karsono</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/bravo_kilo_photography/" class="contact-link" target="_blank">
+      <span class="contact-link-label">Instagram</span>
+      <span class="contact-link-value">@bravo_kilo_photography</span>
+      <span class="contact-arrow">→</span>
+    </a>
+  </div>
+</section>
+<footer>
+  <span class="footer-name">BODI KARSONO</span>
+  <span class="footer-copy">© 2026 — All rights reserved (but flattered if you copy)</span>
+</footer>
+<script>
+(function(){
+  var cursor=document.getElementById('cursor');
+  var ring=document.getElementById('cursorRing');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+    cursor.style.left=(mx-6)+'px';cursor.style.top=(my-6)+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,.contact-link,.thumb,.work-tile,.skill-cell').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');ring.classList.remove('hover');});
+  });
+  var btn=document.getElementById('hamburger');
+  var menu=document.getElementById('mobileMenu');
+  if(btn&&menu){
+    btn.addEventListener('click',function(){
+      btn.classList.toggle('open');menu.classList.toggle('open');
+      document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        btn.classList.remove('open');menu.classList.remove('open');
+        document.body.style.overflow='';
+      });
+    });
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>

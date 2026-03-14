@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bodi Karsono — Copywriter + Maker + Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F5F0E8; --ink: #111111; --red: #E8341A; --yellow: #F5D93A; --blue: #1A3CE8;
+  --mono: 'DM Mono', monospace;
+  --display: 'Bebas Neue', sans-serif;
+  --headline: 'Barlow Condensed', 'Trade Gothic LT Std', 'Trade Gothic', 'Franklin Gothic Medium', sans-serif;
+  --serif: 'Barlow', sans-serif; --serif-weight: 700;
+  --body: 'Barlow', sans-serif;
+  --pad: clamp(20px, 5vw, 48px);
+}
+html { scroll-behavior: smooth; }
+html, body { background-color: var(--cream); }
+body { color: var(--ink); font-family: var(--body); overflow-x: hidden; cursor: none; }
+@media (hover: none) { body { cursor: auto; } .cursor, .cursor-ring { display: none; } }
+body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:1000; opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+.cursor { width:12px; height:12px; background:var(--red); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9999; transition:transform .15s ease,background .2s ease; mix-blend-mode:multiply; }
+.cursor-ring { width:36px; height:36px; border:1.5px solid var(--ink); border-radius:50%; position:fixed; top:0; left:0; pointer-events:none; z-index:9998; opacity:.45; }
+.cursor.hover { transform:scale(3); background:var(--yellow); }
+.cursor-ring.hover { opacity:0; }
+nav { position:sticky; top:0; z-index:500; display:flex; justify-content:space-between; align-items:center; padding:16px var(--pad); background:var(--cream); border-bottom:1px solid rgba(0,0,0,.1); }
+.nav-logo { font-family:var(--display); font-size:26px; letter-spacing:.06em; color:var(--ink); text-decoration:none; }
+.hamburger { display:flex; flex-direction:column; gap:5px; cursor:pointer; padding:4px; user-select:none; }
+.hamburger span { display:block; width:22px; height:2px; background:var(--ink); transition:all .28s ease; }
+.hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+.mobile-menu { display:none; position:fixed; inset:0; background:var(--cream); z-index:400; flex-direction:column; justify-content:center; align-items:center; gap:28px; }
+.mobile-menu.open { display:flex; }
+.mobile-menu a { font-family:var(--display); font-size:clamp(44px,11vw,72px); letter-spacing:.06em; color:var(--ink); text-decoration:none; opacity:.65; transition:opacity .2s,color .2s; }
+.mobile-menu a:hover, .mobile-menu a:active { opacity:1; color:var(--red); }
+footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+.footer-name { font-family:var(--display); font-size:17px; letter-spacing:.1em; opacity:.55; }
+.footer-copy { font-family:var(--mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; opacity:.28; }
+.fade-up { opacity:0; transform:translateY(28px); transition:opacity .7s ease,transform .7s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+.contact { background:var(--red); color:var(--cream); padding:72px var(--pad); display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; }
+.contact-left h2 { font-family:var(--display); font-size:clamp(52px,7vw,100px); letter-spacing:.02em; line-height:.92; }
+.contact-right { display:flex; flex-direction:column; }
+.contact-link { display:flex; justify-content:space-between; align-items:center; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.2); color:var(--cream); text-decoration:none; transition:padding-left .2s; cursor:none; }
+.contact-link:hover { padding-left:14px; }
+.contact-link-label { font-family:var(--mono); font-size:10px; letter-spacing:.15em; text-transform:uppercase; opacity:.55; }
+.contact-link-value { font-family:var(--display); font-size:21px; letter-spacing:.04em; }
+.contact-arrow { opacity:.4; font-size:18px; }
+@media(max-width:700px) { .contact { grid-template-columns:1fr; gap:36px; padding:52px var(--pad); } }
+
+.marquee-bar { background:var(--ink); color:var(--cream); padding:13px 0; overflow:hidden; white-space:nowrap; }
+.marquee-track { display:inline-flex; animation:marquee 80s linear infinite; }
+.marquee-track span { font-family:var(--display); font-size:17px; letter-spacing:.1em; padding:0 16px; opacity:.85; }
+.marquee-track .dot { color:var(--red); opacity:1; padding:0 4px; font-size:12px; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.hero { display:grid; grid-template-columns:1fr 1fr; background-color:var(--cream); }
+.hero-left { padding:40px var(--pad); display:flex; flex-direction:column; justify-content:center; }
+.hero-headline { font-family:var(--headline); font-size:clamp(52px,7vw,108px); line-height:.9; letter-spacing:.04em; font-weight:800; text-transform:uppercase; }
+.hero-right { display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:4px; align-content:start; }
+.thumb { position:relative; overflow:hidden; background:var(--ink); cursor:none; text-decoration:none; display:block; aspect-ratio:1/1; }
+.thumb-bg { position:absolute; inset:0; }
+.thumb-bg img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease,filter .4s ease; filter:brightness(.72); }
+.thumb:hover .thumb-bg img { transform:scale(1.06); filter:brightness(.44); }
+.thumb::after { content:'→'; position:absolute; top:14px; right:14px; font-family:var(--mono); font-size:13px; color:white; opacity:0; transition:opacity .3s; z-index:2; }
+.thumb:hover::after { opacity:.7; }
+.thumb-info { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:16px; opacity:0; transition:opacity .3s; z-index:1; }
+.thumb:hover .thumb-info { opacity:1; }
+.thumb-client { font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:4px; }
+.thumb-title { font-family:var(--serif); font-weight:700; font-size:clamp(12px,1.1vw,17px); color:white; line-height:1.3; }
+.thumb-num { position:absolute; top:12px; left:12px; font-family:var(--display); font-size:12px; letter-spacing:.1em; color:rgba(255,255,255,.12); z-index:1; }
+.work-section { padding:4px 4px 0 4px; background:var(--cream); }
+.work-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; }
+.work-tile { position:relative; overflow:hidden; background:var(--ink); cursor:none; text-decoration:none; display:block; aspect-ratio:1/1; }
+.work-tile-bg { position:absolute; inset:0; }
+.work-tile-bg img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease,filter .4s ease; filter:brightness(.72); }
+.work-tile:hover .work-tile-bg img { transform:scale(1.06); filter:brightness(.44); }
+.work-tile::after { content:'→'; position:absolute; top:12px; right:12px; font-family:var(--mono); font-size:12px; color:white; opacity:0; transition:opacity .3s; z-index:2; }
+.work-tile:hover::after { opacity:.7; }
+.work-tile-info { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:14px; opacity:0; transition:opacity .3s; z-index:1; }
+.work-tile:hover .work-tile-info { opacity:1; }
+.work-tile-client { font-family:var(--mono); font-size:8px; letter-spacing:.2em; text-transform:uppercase; color:var(--yellow); margin-bottom:3px; }
+.work-tile-title { font-family:var(--serif); font-weight:700; font-size:13px; color:white; line-height:1.3; }
+.work-tile-num { position:absolute; top:10px; left:12px; font-family:var(--display); font-size:11px; color:rgba(255,255,255,.1); z-index:1; }
+.divider-bar { height:16px; background:linear-gradient(90deg,var(--red),var(--yellow),var(--blue),var(--red)); background-size:300% 100%; animation:gradientShift 6s ease infinite; margin-top:4px; }
+@keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+.skills-strip { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(0,0,0,.12); border-bottom:1px solid rgba(0,0,0,.12); background-color:var(--cream); }
+.skill-cell { padding:36px var(--pad); border-right:1px solid rgba(0,0,0,.12); position:relative; transition:background .3s,color .3s; overflow:hidden; background-color:var(--cream); }
+.skill-cell:last-child { border-right:none; }
+.skill-tag { display:inline-block; font-family:var(--mono); font-size:9px; letter-spacing:.15em; text-transform:uppercase; padding:3px 8px; border:1px solid currentColor; margin-bottom:14px; opacity:.4; }
+.skill-title { font-family:var(--headline); font-size:clamp(22px,2.8vw,36px); letter-spacing:.06em; font-weight:800; text-transform:uppercase; margin-bottom:8px; }
+.skill-cell p { font-size:15px; line-height:1.4; opacity:.6; }
+.skill-cell:hover { background:var(--ink); color:var(--cream); }
+@media(max-width:700px) {
+  .hero { grid-template-columns:1fr; }
+  .hero-left { padding:40px var(--pad) 32px; }
+  .hero-right { grid-template-columns:1fr 1fr; }
+  .thumb-info { opacity:1; background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.15) 55%,transparent 100%); }
+  .thumb-bg img { filter:brightness(.62); }
+  .work-section { padding:4px 4px 0 4px; }
+  .work-grid { grid-template-columns:1fr 1fr; }
+  .work-tile-info { opacity:1; background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.15) 55%,transparent 100%); }
+  .work-tile-bg img { filter:brightness(.62); }
+  .skills-strip { grid-template-columns:1fr; }
+  .skill-cell { border-right:none; border-bottom:1px solid rgba(0,0,0,.12); padding:28px var(--pad); }
+  .skill-cell:last-child { border-bottom:none; }
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Work</a>
+  <a href="about.html">About</a>
+  <a href="creations.html">Creations</a>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">Bodi Karsono</a>
+  <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero" id="work">
+  <div class="hero-left">
+    <h1 class="hero-headline">
+      I <span style="color:var(--red)">WRITE</span><br>
+      AND I<br>
+      <span style="color:var(--red)">MAKE</span> THINGS.
+    </h1>
+  </div>
+  <div class="hero-right">
+    <a class="thumb" href="work/titos.html">
+      <div class="thumb-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772824098/titos_uiizxg.mp4" type="video/mp4"></video></div>
+      <div class="thumb-num">01</div>
+      <div class="thumb-info"><div class="thumb-client">Tito's Handmade Vodka</div><div class="thumb-title">The first ever 0.0k race.</div></div>
+    </a>
+    <a class="thumb" href="work/google-pay.html">
+      <div class="thumb-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772823105/GooglePay1_g6puco.mp4" type="video/mp4"></video></div>
+      <div class="thumb-num">02</div>
+      <div class="thumb-info"><div class="thumb-client">Google Pay Social</div><div class="thumb-title">506% increase in average views.</div></div>
+    </a>
+    <a class="thumb" href="work/mountain-dew-melon.html">
+      <div class="thumb-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772823105/MajorMelon1_1_p2lqwg.mp4" type="video/mp4"></video></div>
+      <div class="thumb-num">03</div>
+      <div class="thumb-info"><div class="thumb-client">Mountain Dew Major Melon</div><div class="thumb-title">The Most-Tweeted brand of the Super Bowl.</div></div>
+    </a>
+    <a class="thumb" href="work/superbowl-espn.html">
+      <div class="thumb-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772987870/disneysuperbowl_unkrfo.mp4" type="video/mp4"></video></div>
+      <div class="thumb-num">04</div>
+      <div class="thumb-info"><div class="thumb-client">Super Bowl on ESPN</div><div class="thumb-title">TV's biggest event on the world's most magical IP.</div></div>
+    </a>
+  </div>
+</section>
+<div class="marquee-bar"><div class="marquee-track"><span>Ramp Finance</span><span class="dot">✦</span><span>Adidas</span><span class="dot">✦</span><span>Unisom</span><span class="dot">✦</span><span>NBA on ESPN</span><span class="dot">✦</span><span>Google Chrome</span><span class="dot">✦</span><span>Titos Vodka</span><span class="dot">✦</span><span>Lays</span><span class="dot">✦</span><span>Dicks Sporting Goods</span><span class="dot">✦</span><span>Accenture</span><span class="dot">✦</span><span>Mountain Dew</span><span class="dot">✦</span><span>GEICO</span><span class="dot">✦</span><span>TD Bank</span><span class="dot">✦</span><span>Google Pay</span><span class="dot">✦</span><span>Axe</span><span class="dot">✦</span><span>NFL on ESPN</span><span class="dot">✦</span><span>Gold Bond</span><span class="dot">✦</span><span>Hilton</span><span class="dot">✦</span><span>Xyzal</span><span class="dot">✦</span><span>HubSpot</span><span class="dot">✦</span><span>Icy Hot</span><span class="dot">✦</span><span>McDonalds</span><span class="dot">✦</span><span>Sportchek</span><span class="dot">✦</span><span>Aspercreme</span><span class="dot">✦</span><span>US Cellular</span><span class="dot">✦</span><span>Nasacort</span><span class="dot">✦</span><span>Ramp Finance</span><span class="dot">✦</span><span>Adidas</span><span class="dot">✦</span><span>Unisom</span><span class="dot">✦</span><span>NBA on ESPN</span><span class="dot">✦</span><span>Google Chrome</span><span class="dot">✦</span><span>Titos Vodka</span><span class="dot">✦</span><span>Lays</span><span class="dot">✦</span><span>Dicks Sporting Goods</span><span class="dot">✦</span><span>Accenture</span><span class="dot">✦</span><span>Mountain Dew</span><span class="dot">✦</span><span>GEICO</span><span class="dot">✦</span><span>TD Bank</span><span class="dot">✦</span><span>Google Pay</span><span class="dot">✦</span><span>Axe</span><span class="dot">✦</span><span>NFL on ESPN</span><span class="dot">✦</span><span>Gold Bond</span><span class="dot">✦</span><span>Hilton</span><span class="dot">✦</span><span>Xyzal</span><span class="dot">✦</span><span>HubSpot</span><span class="dot">✦</span><span>Icy Hot</span><span class="dot">✦</span><span>McDonalds</span><span class="dot">✦</span><span>Sportchek</span><span class="dot">✦</span><span>Aspercreme</span><span class="dot">✦</span><span>US Cellular</span><span class="dot">✦</span><span>Nasacort</span><span class="dot">✦</span></div></div>
+<div class="work-section">
+  <div class="work-grid">
+    <a class="work-tile" href="work/adidas.html">
+      <div class="work-tile-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772823110/Mar-31-2025_15-01-36_wsyb2s.mp4" type="video/mp4"></video></div>
+      <div class="work-tile-num">05</div>
+      <div class="work-tile-info"><div class="work-tile-client">Adidas × Billie Jean King</div><div class="work-tile-title">Gold Cannes Lions. BJK was impressed.</div></div>
+    </a>
+    <a class="work-tile" href="work/nba-espn.html">
+      <div class="work-tile-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772823104/NBA_BeautifulTimeDunk_c7wge5.mp4" type="video/mp4"></video></div>
+      <div class="work-tile-num">06</div>
+      <div class="work-tile-info"><div class="work-tile-client">NBA on ESPN</div><div class="work-tile-title">A fresh platform for the zeitgeist of basketball.</div></div>
+    </a>
+    <a class="work-tile" href="work/nfl-espn.html">
+      <div class="work-tile-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772823104/RFF1_ctvivf.mp4" type="video/mp4"></video></div>
+      <div class="work-tile-num">07</div>
+      <div class="work-tile-info"><div class="work-tile-client">NFL on ESPN</div><div class="work-tile-title">Three seasons of getting fans hyped for football.</div></div>
+    </a>
+    <a class="work-tile" href="work/mountain-dew-rise.html">
+      <div class="work-tile-bg"><video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><source src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_mp4/v1772824629/MDRise3_a3cqkp.mp4" type="video/mp4"></video></div>
+      <div class="work-tile-num">08</div>
+      <div class="work-tile-info"><div class="work-tile-client">Mountain Dew Rise</div><div class="work-tile-title">The LeBron James salsa-dancing brand launch.</div></div>
+    </a>
+    <a class="work-tile" href="work/dicks.html">
+      <div class="work-tile-bg"><img src="https://res.cloudinary.com/dtj62mh99/image/upload/q_auto,f_auto/v1772823103/Big_Moments_Everyday.png_1_ljbghz.jpg" alt="Dick's Sporting Goods"></div>
+      <div class="work-tile-num">09</div>
+      <div class="work-tile-info"><div class="work-tile-client">Dick's Sporting Goods</div><div class="work-tile-title">Big moments happen every day.</div></div>
+    </a>
+  </div>
+</div>
+<div class="divider-bar"></div>
+<div class="skills-strip" id="about">
+  <div class="skill-cell fade-up">
+    <span class="skill-tag">The words</span>
+    <h3 class="skill-title">Copywriter</h3>
+    <p>Real words for made-up ideas that people can't ignore.</p>
+  </div>
+  <div class="skill-cell fade-up" style="transition-delay:.1s;">
+    <span class="skill-tag">The thinking</span>
+    <h3 class="skill-title">Strategist</h3>
+    <p>The 'why' behind everything from TV campaigns to social posts.</p>
+  </div>
+  <div class="skill-cell fade-up" style="transition-delay:.2s;">
+    <span class="skill-tag">The making</span>
+    <h3 class="skill-title">Creator</h3>
+    <p>Shooter+Editor = BringIdeasToLife-er</p>
+  </div>
+</div>
+
+<section class="contact" id="contact">
+  <div class="contact-left"><h2>LET'S MAKE SOMETHING.</h2></div>
+  <div class="contact-right">
+    <a href="mailto:bodikarsono@gmail.com" class="contact-link">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">bodikarsono@gmail.com</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://www.linkedin.com/in/bodi-karsono-05967969/" class="contact-link" target="_blank">
+      <span class="contact-link-label">LinkedIn</span>
+      <span class="contact-link-value">Bodi Karsono</span>
+      <span class="contact-arrow">→</span>
+    </a>
+    <a href="https://www.instagram.com/bravo_kilo_photography/" class="contact-link" target="_blank">
+      <span class="contact-link-label">Instagram</span>
+      <span class="contact-link-value">@bravo_kilo_photography</span>
+      <span class="contact-arrow">→</span>
+    </a>
+  </div>
+</section>
+<footer>
+  <span class="footer-name">BODI KARSONO</span>
+  <span class="footer-copy">© 2026 — All rights reserved (but flattered if you copy)</span>
+</footer>
+<script>
+(function(){
+  var cursor=document.getElementById('cursor');
+  var ring=document.getElementById('cursorRing');
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+    cursor.style.left=(mx-6)+'px';cursor.style.top=(my-6)+'px';
+  });
+  (function loop(){
+    rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,.contact-link,.thumb,.work-tile,.skill-cell').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');ring.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');ring.classList.remove('hover');});
+  });
+  var btn=document.getElementById('hamburger');
+  var menu=document.getElementById('mobileMenu');
+  if(btn&&menu){
+    btn.addEventListener('click',function(){
+      btn.classList.toggle('open');menu.classList.toggle('open');
+      document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        btn.classList.remove('open');menu.classList.remove('open');
+        document.body.style.overflow='';
+      });
+    });
+  }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+})();
+</script>
+</body>
+</html>
