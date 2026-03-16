@@ -12,13 +12,10 @@
 :root{--cream:#F5F0E8;--ink:#111111;--red:#E8341A;--yellow:#F5D93A;--blue:#1A3CE8;--mono:'DM Mono',monospace;--display:'Bebas Neue',sans-serif;--serif:'Barlow',sans-serif;--body:'Barlow',sans-serif;--pad:clamp(20px,5vw,48px)}
 html{scroll-behavior:smooth}
 html,body{background-color:var(--cream)}
-body{color:var(--ink);font-family:var(--body);overflow-x:hidden;cursor:none}
-@media(hover:none){body{cursor:auto}.cursor,.cursor-ring{display:none}}
+body{color:var(--ink);font-family:var(--body);overflow-x:hidden;cursor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 3 L20 11 L13 14 L10 21 Z' fill='%23E8341A' stroke='none'/></svg>") 3 3, auto;}
+
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
-.cursor{width:12px;height:12px;background:var(--red);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s ease,background .2s ease;mix-blend-mode:multiply}
-.cursor-ring{width:36px;height:36px;border:1.5px solid var(--ink);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;opacity:.45}
-.cursor.hover{transform:scale(3);background:var(--yellow)}
-.cursor-ring.hover{opacity:0}
+.cursor{display:none;}.cursor-ring{display:none;}
 nav{position:sticky;top:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:16px var(--pad);background:var(--cream);border-bottom:1px solid rgba(0,0,0,.1)}
 .nav-logo{font-family:var(--display);font-size:26px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
 .nav-links{display:none}
@@ -40,7 +37,7 @@ footer{background:var(--ink);color:var(--cream);padding:22px var(--pad);display:
 .contact{background:var(--red);color:var(--cream);padding:72px var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
 .contact-left h2{font-family:var(--display);font-size:clamp(52px,7vw,100px);letter-spacing:.02em;line-height:.92}
 .contact-right{display:flex;flex-direction:column}
-.contact-link{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.2);color:var(--cream);text-decoration:none;transition:padding-left .2s;cursor:none}
+.contact-link{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.2);color:var(--cream);text-decoration:none;transition:padding-left .2s;cursor:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M3 3 L20 11 L13 14 L10 21 Z' fill='%23E8341A' stroke='none'/></svg>") 3 3, auto}
 .contact-link:hover{padding-left:14px}
 .contact-link-label{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;opacity:.55}
 .contact-link-value{font-family:var(--display);font-size:21px;letter-spacing:.04em}
@@ -80,8 +77,8 @@ footer{background:var(--ink);color:var(--cream);padding:22px var(--pad);display:
     <div class="about-text">
       <p class="about-headline">Hi, I'm Bodi.</p>
       <div class="about-highlights">
-        <p class="about-body-text">My interests include Settlers of Catan, Dungeon Crawler Carl, Wordle, golf, and the country of Japan.</p>
-        <p class="about-body-text" style="margin-top:16px;">Fun fact: I once defeated 2015 PGA Tour Rookie Of the Year, Daniel Berger to win a golf championship.</p>
+        <p class="about-body-text">My interests include Settlers of Catan, Dungeon Crawler Carl, Wordle, Professional social media scrolling, golf, and 7/11 egg sandos.</p>
+        <p class="about-body-text" style="margin-top:16px;">Fun fact: I once defeated 2015 PGA Tour Rookie Of the Year, Daniel Berger, to win a <a href="https://www.fsga.org/news/Details/797" target="_blank" style="color:var(--ink);text-decoration:underline;opacity:1;">golf championship</a>.</p>
       </div>
       <div class="about-experience-label">Experience</div>
       <div class="about-experience">TBWA\Chiat\Day NY<br>Bleacher Report<br>The Martin Agency<br>Arts &amp; Letters Creative Co.</div>
