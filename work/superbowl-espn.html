@@ -98,9 +98,46 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
   .media-pair { grid-template-columns:1fr; }
   .media-trio { grid-template-columns:1fr 1fr; }
 }
+
+#pw-gate {
+  position:fixed; inset:0; z-index:99999;
+  background:#F5F0E8; display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+}
+#pw-gate.hidden { display:none; }
+.pw-logo { font-family:'Barlow Condensed',sans-serif; font-size:22px;
+  letter-spacing:.08em; color:#111111; margin-bottom:60px; opacity:.4; }
+.pw-headline { font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:clamp(36px,6vw,72px); letter-spacing:.04em; text-transform:uppercase;
+  color:#111111; line-height:.95; margin-bottom:8px; text-align:center; }
+.pw-sub { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.15em;
+  text-transform:uppercase; opacity:.4; margin-bottom:40px; text-align:center; }
+.pw-form { display:flex; flex-direction:column; align-items:center; gap:12px; width:100%; max-width:320px; }
+.pw-input { width:100%; padding:14px 18px; border:1.5px solid rgba(0,0,0,.15);
+  background:white; font-family:'DM Mono',monospace; font-size:13px;
+  letter-spacing:.1em; color:#111111; outline:none; transition:border-color .2s; }
+.pw-input:focus { border-color:#E8341A; }
+.pw-input::placeholder { opacity:.3; }
+.pw-btn { width:100%; padding:14px; background:#111111; color:#F5F0E8;
+  font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:800;
+  letter-spacing:.08em; text-transform:uppercase; border:none; cursor:pointer;
+  transition:background .2s; }
+.pw-btn:hover { background:#E8341A; }
+.pw-error { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; color:#E8341A; opacity:0; transition:opacity .2s; height:16px; }
+.pw-error.show { opacity:1; }
 </style>
 </head>
-<body>
+<body><div id="pw-gate">
+  <div class="pw-logo">Bodi Karsono</div>
+  <h1 class="pw-headline">This site is<br>password protected.</h1>
+  <p class="pw-sub">Enter password to continue</p>
+  <div class="pw-form">
+    <input class="pw-input" id="pw-input" type="password" placeholder="Password" autocomplete="off">
+    <button class="pw-btn" id="pw-btn">Enter</button>
+    <div class="pw-error" id="pw-error">Incorrect password</div>
+  </div>
+</div>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="mobile-menu" id="mobileMenu">
@@ -189,5 +226,27 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
   document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
 })();
 </script>
+<script>(function(){
+  var PASS='looknofurther';
+  var gate=document.getElementById('pw-gate');
+  var input=document.getElementById('pw-input');
+  var btn=document.getElementById('pw-btn');
+  var err=document.getElementById('pw-error');
+  if(sessionStorage.getItem('pw')===PASS){gate.classList.add('hidden');return;}
+  document.body.style.overflow='hidden';
+  function attempt(){
+    if(input.value===PASS){
+      sessionStorage.setItem('pw',PASS);
+      gate.classList.add('hidden');
+      document.body.style.overflow='';
+    } else {
+      err.classList.add('show');
+      input.value='';input.focus();
+      setTimeout(function(){err.classList.remove('show');},2000);
+    }
+  }
+  btn.addEventListener('click',attempt);
+  input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
+})();</script>
 </body>
 </html>
