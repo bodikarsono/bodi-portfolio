@@ -129,53 +129,23 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
 .pw-error.show { opacity:1; }
 </style>
 </head>
-<body><script>
-(function(){
-  var PASS='looknofurther';
-  var gate=document.getElementById('pw-gate');
-  var input=document.getElementById('pw-input');
-  var btn=document.getElementById('pw-btn');
-  var err=document.getElementById('pw-error');
-  var toggle=document.getElementById('pw-toggle');
-  var eye=document.getElementById('pw-eye');
-  var eyeOff=document.getElementById('pw-eye-off');
-  if(sessionStorage.getItem('pw')===PASS){if(gate)gate.classList.add('hidden');return;}
-  if(gate)document.body.style.overflow='hidden';
-  function attempt(){
-    if(input&&input.value===PASS){
-      sessionStorage.setItem('pw',PASS);
-      if(gate)gate.classList.add('hidden');
-      document.body.style.overflow='';
-    } else {
-      if(err)err.classList.add('show');
-      if(input){input.value='';input.focus();}
-      setTimeout(function(){if(err)err.classList.remove('show');},2000);
-    }
-  }
-  if(btn)btn.addEventListener('click',attempt);
-  if(input)input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
-  if(toggle&&input){
-    toggle.addEventListener('click',function(){
-      if(input.type==='password'){
-        input.type='text';
-        if(eye)eye.style.display='none';
-        if(eyeOff)eyeOff.style.display='block';
-        toggle.style.opacity='1';
-      } else {
-        input.type='password';
-        if(eye)eye.style.display='block';
-        if(eyeOff)eyeOff.style.display='none';
-        toggle.style.opacity='.4';
-      }
-    });
-  }
-})();
-</script>
+<body>
 <div id="pw-gate">
   <div class="pw-logo">Bodi Karsono</div>
-  <h1 class="pw-headline">This site is<br>password protected.</h1>
-  <p class="pw-sub">Enter password to continue</p>
+  <h1 class="pw-headline">Password, please:</h1>
   <div class="pw-form">
+    <div style="position:relative;width:100%;">
+      <input class="pw-input" id="pw-input" type="password" placeholder="Password" autocomplete="off" style="width:100%;padding-right:48px;">
+      <button id="pw-toggle" type="button" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;opacity:.4;transition:opacity .2s;" aria-label="Show password">
+        <svg id="pw-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg id="pw-eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+    </div>
+    <button class="pw-btn" id="pw-btn">Enter</button>
+    <div class="pw-error" id="pw-error">Incorrect password</div>
+  </div>
+</div>
+<div class="pw-form">
     <div style="position:relative;width:100%;">
     <input class="pw-input" id="pw-input" type="password" placeholder="Password" autocomplete="off" style="width:100%;padding-right:48px;">
     <button id="pw-toggle" type="button" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;opacity:.4;transition:opacity .2s;" aria-label="Show password">
@@ -248,6 +218,50 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
 </footer>
 
 
+
+<script>
+(function(){
+  var PASS='looknofurther';
+  var gate=document.getElementById('pw-gate');
+  var input=document.getElementById('pw-input');
+  var btn=document.getElementById('pw-btn');
+  var err=document.getElementById('pw-error');
+  var toggle=document.getElementById('pw-toggle');
+  var eye=document.getElementById('pw-eye');
+  var eyeOff=document.getElementById('pw-eye-off');
+  if(!gate)return;
+  if(sessionStorage.getItem('pw')===PASS){gate.classList.add('hidden');return;}
+  document.body.style.overflow='hidden';
+  function attempt(){
+    if(input&&input.value===PASS){
+      sessionStorage.setItem('pw',PASS);
+      gate.classList.add('hidden');
+      document.body.style.overflow='';
+    } else {
+      if(err)err.classList.add('show');
+      if(input){input.value='';input.focus();}
+      setTimeout(function(){if(err)err.classList.remove('show');},2000);
+    }
+  }
+  if(btn)btn.addEventListener('click',attempt);
+  if(input)input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
+  if(toggle&&input){
+    toggle.addEventListener('click',function(){
+      if(input.type==='password'){
+        input.type='text';
+        if(eye)eye.style.display='none';
+        if(eyeOff)eyeOff.style.display='block';
+        toggle.style.opacity='1';
+      } else {
+        input.type='password';
+        if(eye)eye.style.display='block';
+        if(eyeOff)eyeOff.style.display='none';
+        toggle.style.opacity='.4';
+      }
+    });
+  }
+})();
+</script>
 <script>
 (function(){
   var cursor=document.getElementById('cursor');
