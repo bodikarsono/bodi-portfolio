@@ -76,7 +76,7 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
 .thumb-title { font-family:var(--serif); font-weight:700; font-size:clamp(12px,1.1vw,17px); color:white; line-height:1.3; }
 .thumb-num { position:absolute; top:12px; left:12px; font-family:var(--display); font-size:12px; letter-spacing:.1em; color:rgba(255,255,255,.12); z-index:1; }
 .work-section { padding:4px 4px 0 4px; background:var(--cream); }
-.work-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:4px; }
+.work-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:4px; }
 .work-tile { position:relative; overflow:hidden; background:var(--ink);  text-decoration:none; display:block; aspect-ratio:1/1; }
 .work-tile-bg { position:absolute; inset:0; }
 .work-tile-bg img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease,filter .4s ease; filter:brightness(.72); }
@@ -145,15 +145,7 @@ footer { background:var(--ink); color:var(--cream); padding:22px var(--pad); dis
 <div id="pw-gate">
   <div class="pw-logo">Bodi Karsono</div>
   <h1 class="pw-headline">Password, please:</h1>
-  <div class="pw-form">
-    <div style="position:relative;width:100%;">
-      <input class="pw-input" id="pw-input" type="password" placeholder="Password" autocomplete="off" style="width:100%;padding-right:48px;">
-      <button id="pw-toggle" type="button" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;opacity:.4;transition:opacity .2s;" aria-label="Show password">
-        <svg id="pw-eye" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        <svg id="pw-eye-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-      </button>
-    </div>
-    <button class="pw-btn" id="pw-btn">Enter</button>
+      <button class="pw-btn" id="pw-btn">Enter</button>
     <div class="pw-error" id="pw-error">Incorrect password</div>
   </div>
 </div>
