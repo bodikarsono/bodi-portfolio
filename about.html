@@ -87,7 +87,49 @@ footer{background:var(--ink);color:var(--cream);padding:22px var(--pad);display:
 .pw-error.show { opacity:1; }
 </style>
 </head>
-<body><div id="pw-gate">
+<body><script>
+(function(){
+  var PASS='looknofurther';
+  var gate=document.getElementById('pw-gate');
+  var input=document.getElementById('pw-input');
+  var btn=document.getElementById('pw-btn');
+  var err=document.getElementById('pw-error');
+  var toggle=document.getElementById('pw-toggle');
+  var eye=document.getElementById('pw-eye');
+  var eyeOff=document.getElementById('pw-eye-off');
+  if(sessionStorage.getItem('pw')===PASS){if(gate)gate.classList.add('hidden');return;}
+  if(gate)document.body.style.overflow='hidden';
+  function attempt(){
+    if(input&&input.value===PASS){
+      sessionStorage.setItem('pw',PASS);
+      if(gate)gate.classList.add('hidden');
+      document.body.style.overflow='';
+    } else {
+      if(err)err.classList.add('show');
+      if(input){input.value='';input.focus();}
+      setTimeout(function(){if(err)err.classList.remove('show');},2000);
+    }
+  }
+  if(btn)btn.addEventListener('click',attempt);
+  if(input)input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
+  if(toggle&&input){
+    toggle.addEventListener('click',function(){
+      if(input.type==='password'){
+        input.type='text';
+        if(eye)eye.style.display='none';
+        if(eyeOff)eyeOff.style.display='block';
+        toggle.style.opacity='1';
+      } else {
+        input.type='password';
+        if(eye)eye.style.display='block';
+        if(eyeOff)eyeOff.style.display='none';
+        toggle.style.opacity='.4';
+      }
+    });
+  }
+})();
+</script>
+<div id="pw-gate">
   <div class="pw-logo">Bodi Karsono</div>
   <h1 class="pw-headline">This site is<br>password protected.</h1>
   <p class="pw-sub">Enter password to continue</p>
@@ -153,48 +195,38 @@ footer{background:var(--ink);color:var(--cream);padding:22px var(--pad);display:
   <span class="footer-name">BODI KARSONO</span>
   <span class="footer-copy">© 2026 — All rights reserved (but flattered if you copy)</span>
 </footer>
+
+
 <script>
 (function(){
   var cursor=document.getElementById('cursor');
   var ring=document.getElementById('cursorRing');
   var mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX;my=e.clientY;
-    cursor.style.left=(mx-6)+'px';cursor.style.top=(my-6)+'px';
-  });
-  (function loop(){
-    rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
-    requestAnimationFrame(loop);
-    var toggle=document.getElementById('pw-toggle');
-  var eye=document.getElementById('pw-eye');
-  var eyeOff=document.getElementById('pw-eye-off');
-  if(toggle){
-    toggle.addEventListener('click',function(){
-      if(input.type==='password'){
-        input.type='text';eye.style.display='none';eyeOff.style.display='block';toggle.style.opacity='1';
-      } else {
-        input.type='password';eye.style.display='block';eyeOff.style.display='none';toggle.style.opacity='.4';
-      }
+  if(cursor&&ring){
+    document.addEventListener('mousemove',function(e){
+      mx=e.clientX;my=e.clientY;
+      cursor.style.left=(mx-6)+'px';cursor.style.top=(my-6)+'px';
     });
+    (function loop(){
+      rx+=(mx-rx-18)*0.12;ry+=(my-ry-18)*0.12;
+      ring.style.left=rx+'px';ring.style.top=ry+'px';
+      requestAnimationFrame(loop);
+    })();
   }
-})();
-  document.querySelectorAll('a,.contact-link').forEach(function(el){
-    el.addEventListener('mouseenter',function(){cursor.classList.add('hover');ring.classList.add('hover');});
-    el.addEventListener('mouseleave',function(){cursor.classList.remove('hover');ring.classList.remove('hover');});
+  document.querySelectorAll('a,.contact-link,.thumb,.work-tile,.skill-cell').forEach(function(el){
+    el.addEventListener('mouseenter',function(){if(cursor)cursor.classList.add('hover');if(ring)ring.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){if(cursor)cursor.classList.remove('hover');if(ring)ring.classList.remove('hover');});
   });
   var btn=document.getElementById('hamburger');
   var menu=document.getElementById('mobileMenu');
   if(btn&&menu){
     btn.addEventListener('click',function(){
-      btn.classList.toggle('open');
-      menu.classList.toggle('open');
+      btn.classList.toggle('open');menu.classList.toggle('open');
       document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
     });
     menu.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click',function(){
-        btn.classList.remove('open');
-        menu.classList.remove('open');
+        btn.classList.remove('open');menu.classList.remove('open');
         document.body.style.overflow='';
       });
     });
@@ -205,27 +237,5 @@ footer{background:var(--ink);color:var(--cream);padding:22px var(--pad);display:
   document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
 })();
 </script>
-<script>(function(){
-  var PASS='looknofurther';
-  var gate=document.getElementById('pw-gate');
-  var input=document.getElementById('pw-input');
-  var btn=document.getElementById('pw-btn');
-  var err=document.getElementById('pw-error');
-  if(sessionStorage.getItem('pw')===PASS){gate.classList.add('hidden');return;}
-  document.body.style.overflow='hidden';
-  function attempt(){
-    if(input.value===PASS){
-      sessionStorage.setItem('pw',PASS);
-      gate.classList.add('hidden');
-      document.body.style.overflow='';
-    } else {
-      err.classList.add('show');
-      input.value='';input.focus();
-      setTimeout(function(){err.classList.remove('show');},2000);
-    }
-  }
-  btn.addEventListener('click',attempt);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter')attempt();});
-})();</script>
 </body>
 </html>
